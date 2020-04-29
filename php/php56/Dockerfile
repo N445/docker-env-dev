@@ -1,0 +1,35 @@
+FROM php:5.6-fpm
+
+RUN export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
+    && apt-get update && apt-get install -y --no-install-recommends ghostscript gnupg unzip iputils-ping acl bash-completion \
+    libmagickwand-dev ssh git htop zip nodejs grunt nano wkhtmltopdf libxslt-dev libgd-dev libxml2-dev imagemagick cron \
+    && pecl install imagick-3.4.3 \
+    && docker-php-ext-enable imagick
+
+# Installation de yarn via npm
+RUN apt-get install -y yarn  && rm -rf /var/lib/apt/lists/*
+
+RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
+
+# Extensions php etc
+RUN docker-php-ext-install mysqli pdo pdo_mysql opcache soap bcmath bz2 calendar intl gd xsl xml zip
+
+# SSH
+RUN mkdir /root/.ssh -p
+COPY ./conf/.ssh/id_rsa.pub /root/.ssh/id_rsa.pub
+
+RUN chmod -R 700 /root/.ssh && chmod 600 /root/.ssh/id_rsa
+COPY ./conf/.bashrc /root/.bashrc
+
+# Config PHP
+COPY ./conf/php-ini-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
+
+# COMPOSER
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Symfony
+RUN curl -sS https://get.symfony.com/cli/installer | php -- --install-dir=/usr/local/bin --filename=symfony
+
+RUN /bin/bash -c "source /root/.bashrc"
+
+WORKDIR /data/www

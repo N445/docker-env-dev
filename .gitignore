@@ -1,0 +1,24 @@
+# PHP
+php/php*/conf/.ssh/*
+
+# NGINX
+vhosts/*.conf
+
+# MYSQL
+mysql/data/*
+
+# ELASTICSEARCH
+elastic/data/*
+
+# GENERAL
+.env
+.idea
+
+docker-compose.yml
+php/.gitconfig
+
+php/.ssh/*
+!php/.ssh/.gitkeep
+
+!**/.gitkeep
+!**/*.dist

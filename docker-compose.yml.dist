@@ -1,0 +1,99 @@
+version: '2'
+
+services:
+  nginx:
+    container_name: nginx
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ${DEV_PATH}:${SERVER_PATH}
+      - ./vhosts:/etc/nginx/conf.d
+    depends_on:
+      - php
+    networks:
+      frontend:
+        aliases:
+          - sonic-mag.local
+  mysql:
+    container_name: mysql
+    image: mysql:${MYSQL_VERSION}
+    volumes:
+      - ${DOCKER_PATH}${MYSQL_LOCAL_STORAGE}/${MYSQL_VERSION}/data:/var/lib/mysql
+      - ${DOCKER_PATH}${DUMP_PATH}:/var/dump-path
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    networks:
+      - backend
+  livereload:
+    image: devcrea/livereload
+    container_name: livereload
+    ports:
+      - "35729:35729"
+    volumes:
+      - ${DEV_PATH}/project/public/css:/usr/src/livereload-watch/project
+  pma:
+    container_name: pma
+    image: phpmyadmin/phpmyadmin
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+    ports:
+      - "8080:80"
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - mysql
+  maildev:
+    container_name: maildev
+    restart: always
+    image: djfarrelly/maildev
+    ports:
+      - "1080:80"
+      - "1025:25"
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - pma
+  php:
+    container_name: php
+    build: ./php/php74
+    ports:
+      - 9000
+    volumes:
+      - ${DEV_PATH}:${SERVER_PATH}
+      - ${DOCKER_PATH}${CACHE_PATH}/composer:/root/.composer/cache
+      - /usr/local/bin/symfony:/usr/local/bin/symfony
+      - ./php/composer_auth.json:/root/.composer/auth.json
+      - ./php/.gitconfig:/root/.gitconfig
+      - ./php/crontab:/etc/cron.d/crontab
+    networks:
+      - backend
+      - frontend
+  elastic:
+    container_name: elastic
+    image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}
+    environment:
+      cluster.name: Local-cluster
+      bootstrap.memory_lock: "true"
+      ES_JAVA_OPTS: -Xms512m -Xmx512m
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - ${DOCKER_PATH}${ELASTIC_LOCAL_STORAGE}/${ELASTIC_VERSION}/data:/usr/share/elasticsearch/data
+    ports:
+      - 9200:9200
+    networks:
+      - backend
+      - frontend
+
+networks:
+  frontend:
+  backend:

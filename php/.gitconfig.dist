@@ -1,0 +1,8 @@
+[user]
+	name = Nom Prenom
+	email = email@domain.fr
+[alias]
+	co = checkout
+	br = branch
+	cm = commit
+	s = status

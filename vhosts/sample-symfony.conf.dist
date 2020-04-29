@@ -1,0 +1,6 @@
+server {
+    set $host HOST;
+    set $dir robin-parisot;
+
+	include /etc/nginx/conf.d/conf/base-symfony.conf;
+}
