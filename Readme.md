@@ -13,7 +13,9 @@ Remplir `DEV_PATH` vers le dossier de dévelopement (les sites)
 Dans le dossier php/conf
 
 Copier `.gitconfig.dist` en `.gitconfig`
+
 Copier `composer_auth.json.dist` en `composer_auth.json`
+
 Copier `crontab.dist` en `crontab`
 
 ### SSH
@@ -22,6 +24,8 @@ Copier les fichiers SSH de la machine reconnue par Gitlab dans `php/.ssh`
 
 - id_rsa
 - id_rsa.pub
+
+`docker-compose up`
 
 ## Maildev 
 
@@ -58,6 +62,19 @@ A la suite de l'installation les executables de `wkhtmltoimage` et `wkhtmltopdf`
 - apt-get update && curl -sL https://deb.nodesource.com/setup_12.x | bash -
 - apt-get install -y nodejs && npm install npm@latest -g
 - nodejs -v && npm -v
+
+----------------------
+
+# Options
+
+Pour ajouter des hosts sur nginx
+
+```yaml
+    networks:
+      frontend:
+        aliases:
+          - host.host
+```
 
 ----------------------
 # Erreurs et solutions

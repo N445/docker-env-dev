@@ -27,9 +27,7 @@ services:
     depends_on:
       - php
     networks:
-      frontend:
-        aliases:
-          # - nginx hosts
+      - frontend
   mysql:
     container_name: mysql
     image: mysql:${MYSQL_VERSION}

@@ -1,6 +1,6 @@
 server {
     set $DNS HOST;
-    set $PUBLIC_DIR robin-parisot;
+    set $PUBLIC_DIR PATH;
 
 	include /etc/nginx/conf.d/conf/base-symfony.conf;
 }

@@ -6,12 +6,6 @@ php/php*/conf/.ssh/*
 vhosts/*.conf
 !vhosts/conf
 
-# MYSQL
-mysql/data/*
-
-# ELASTICSEARCH
-elastic/data/*
-
 # STORAGE
 storage/*
 
