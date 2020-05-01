@@ -1,6 +1,21 @@
 version: '2'
 
 services:
+  php:
+    container_name: php
+    build: ./php/php74
+    ports:
+      - 9000
+    volumes:
+      - ${DEV_PATH}:${SERVER_PATH}
+      - ./${CACHE_PATH}/composer:/root/.composer/cache
+      #- /usr/local/bin/symfony:/usr/local/bin/symfony
+      - ./php/composer_auth.json:/root/.composer/auth.json
+      - ./php/.gitconfig:/root/.gitconfig
+      - ./php/crontab:/etc/cron.d/crontab
+    networks:
+      - backend
+      - frontend
   nginx:
     container_name: nginx
     image: nginx:latest
@@ -14,7 +29,7 @@ services:
     networks:
       frontend:
         aliases:
-          - sonic-mag.local
+          # - nginx hosts
   mysql:
     container_name: mysql
     image: mysql:${MYSQL_VERSION}
@@ -60,21 +75,6 @@ services:
       - frontend
     depends_on:
       - pma
-  php:
-    container_name: php
-    build: ./php/php74
-    ports:
-      - 9000
-    volumes:
-      - ${DEV_PATH}:${SERVER_PATH}
-      - ./${CACHE_PATH}/composer:/root/.composer/cache
-      #- /usr/local/bin/symfony:/usr/local/bin/symfony
-      - ./php/composer_auth.json:/root/.composer/auth.json
-      - ./php/.gitconfig:/root/.gitconfig
-      - ./php/crontab:/etc/cron.d/crontab
-    networks:
-      - backend
-      - frontend
   elastic:
     container_name: elastic
     image: docker.elastic.co/elasticsearch/elasticsearch:${ELASTIC_VERSION}

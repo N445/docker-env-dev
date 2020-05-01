@@ -15,6 +15,9 @@ elastic/data/*
 # STORAGE
 storage/*
 
+# CACHE
+cache/*
+
 # GENERAL
 .env
 .idea
