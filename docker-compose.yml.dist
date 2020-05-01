@@ -38,18 +38,8 @@ services:
       - ./${DUMP_PATH}:/var/dump-path
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     networks:
       - backend
-  livereload:
-    image: devcrea/livereload
-    container_name: livereload
-    ports:
-      - "35729:35729"
-    volumes:
-      - ${DEV_PATH}/project/public/css:/usr/src/livereload-watch/project
   pma:
     container_name: pma
     image: phpmyadmin/phpmyadmin
@@ -63,6 +53,13 @@ services:
       - frontend
     depends_on:
       - mysql
+  livereload:
+    image: devcrea/livereload
+    container_name: livereload
+    ports:
+      - "35729:35729"
+    volumes:
+      - ${DEV_PATH}/project/public/css:/usr/src/livereload-watch/project
   maildev:
     container_name: maildev
     restart: always

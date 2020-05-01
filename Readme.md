@@ -27,7 +27,24 @@ Copier les fichiers SSH de la machine reconnue par Gitlab dans `php/.ssh`
 
 Pour utiliser maildev avec symfony, voici l'url du .env.local
 
-`MAILER_URL=smtp://maildev:25 `
+`MAILER_URL=smtp://maildev:25`
+
+url pour voir les mails `127.0.0.1:1080`
+
+## PHPMYADMIN 
+
+url `127.0.0.1:8080`
+login : root
+psw : 0000
+
+## DATABASE
+
+pour se connecter sur la base de donnée
+
+en host mettre `mysql`
+
+login : root
+psw : 0000
 
 ## Wkhtmltoimage  Wkhtmltopdf
 
