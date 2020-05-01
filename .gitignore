@@ -3,6 +3,7 @@ php/php*/conf/.ssh/*
 
 # NGINX
 vhosts/*.conf
+!vhosts/conf
 
 # MYSQL
 mysql/data/*
@@ -18,7 +19,6 @@ docker-compose.yml
 php/.gitconfig
 
 php/.ssh/*
-!php/.ssh/.gitkeep
 
 !**/.gitkeep
 !**/*.dist

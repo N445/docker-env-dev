@@ -1,24 +1,22 @@
-# Docker
+# Docker env
 
-# Installation
+## Installation
+
+### Conf file
 
 Copier `docker-compose.yml.dist` en `docker-compose.yml`
 
 Copier `.env.dist` en `.env`
 
-Remplir `DEV_PATH` vers le dossier de développement (les sites)
+Remplir `DEV_PATH` vers le dossier de dévelopement (les sites)
 
-Remplir `DOCKER_PATH` vers le dossier ou se trouve ce readme
- 
 
-## SSH
+### SSH
 
 Copier les fichiers SSH de la machine reconnue par Gitlab dans `php/.ssh`
 
-- authorized_keys
 - id_rsa
 - id_rsa.pub
-- known_hosts
 
 ## Maildev 
 

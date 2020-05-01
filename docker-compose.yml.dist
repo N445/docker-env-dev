@@ -19,8 +19,8 @@ services:
     container_name: mysql
     image: mysql:${MYSQL_VERSION}
     volumes:
-      - ${DOCKER_PATH}${MYSQL_LOCAL_STORAGE}/${MYSQL_VERSION}/data:/var/lib/mysql
-      - ${DOCKER_PATH}${DUMP_PATH}:/var/dump-path
+      - ./${MYSQL_LOCAL_STORAGE}/${MYSQL_VERSION}/data:/var/lib/mysql
+      - ./${DUMP_PATH}:/var/dump-path
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -67,8 +67,8 @@ services:
       - 9000
     volumes:
       - ${DEV_PATH}:${SERVER_PATH}
-      - ${DOCKER_PATH}${CACHE_PATH}/composer:/root/.composer/cache
-      - /usr/local/bin/symfony:/usr/local/bin/symfony
+      - ./${CACHE_PATH}/composer:/root/.composer/cache
+      #- /usr/local/bin/symfony:/usr/local/bin/symfony
       - ./php/composer_auth.json:/root/.composer/auth.json
       - ./php/.gitconfig:/root/.gitconfig
       - ./php/crontab:/etc/cron.d/crontab
@@ -87,7 +87,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - ${DOCKER_PATH}${ELASTIC_LOCAL_STORAGE}/${ELASTIC_VERSION}/data:/usr/share/elasticsearch/data
+      - ./${ELASTIC_LOCAL_STORAGE}/${ELASTIC_VERSION}/data:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
     networks:
