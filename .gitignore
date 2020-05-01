@@ -1,5 +1,6 @@
 # PHP
-php/php*/conf/.ssh/*
+php/conf/*
+php/php*/conf/*
 
 # NGINX
 vhosts/*.conf
@@ -11,14 +12,14 @@ mysql/data/*
 # ELASTICSEARCH
 elastic/data/*
 
+# STORAGE
+storage/*
+
 # GENERAL
 .env
 .idea
 
 docker-compose.yml
-php/.gitconfig
-
-php/.ssh/*
 
 !**/.gitkeep
 !**/*.dist
