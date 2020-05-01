@@ -10,9 +10,9 @@ services:
       - ${DEV_PATH}:${SERVER_PATH}
       - ./${CACHE_PATH}/composer:/root/.composer/cache
       #- /usr/local/bin/symfony:/usr/local/bin/symfony
-      - ./php/composer_auth.json:/root/.composer/auth.json
-      - ./php/.gitconfig:/root/.gitconfig
-      - ./php/crontab:/etc/cron.d/crontab
+      - ./php/config/composer_auth.json:/root/.composer/auth.json
+      - ./php/config/.gitconfig:/root/.gitconfig
+      - ./php/config/crontab:/etc/cron.d/crontab
     networks:
       - backend
       - frontend
