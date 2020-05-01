@@ -10,6 +10,11 @@ Copier `.env.dist` en `.env`
 
 Remplir `DEV_PATH` vers le dossier de dévelopement (les sites)
 
+Dans le dossier php/conf
+
+Copier `.gitconfig.dist` en `.gitconfig`
+Copier `composer_auth.json.dist` en `composer_auth.json`
+Copier `crontab.dist` en `crontab`
 
 ### SSH
 

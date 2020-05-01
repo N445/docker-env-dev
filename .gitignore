@@ -1,6 +1,6 @@
 # PHP
 php/conf/*
-php/php*/conf/*
+php/php*/conf/.ssh/*
 
 # NGINX
 vhosts/*.conf
