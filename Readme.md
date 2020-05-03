@@ -1,6 +1,3 @@
-# POUR MOI C'BON GO LOL
-
-
 # Docker env
 
 ## Installation
