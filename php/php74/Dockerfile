@@ -16,7 +16,7 @@ RUN docker-php-ext-install mysqli pdo pdo_mysql opcache soap bcmath bz2 calendar
 
 # SSH
 RUN mkdir /root/.ssh -p
-COPY ./conf/.ssh/id_rsa.pub /root/.ssh/id_rsa
+COPY ./conf/.ssh/id_rsa /root/.ssh/id_rsa
 COPY ./conf/.ssh/id_rsa.pub /root/.ssh/id_rsa.pub
 
 RUN chmod -R 700 /root/.ssh && chmod 600 /root/.ssh/id_rsa
