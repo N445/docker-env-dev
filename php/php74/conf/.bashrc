@@ -67,6 +67,8 @@ alias untar='tar -zxvf '
 alias ..='cd ..'
 alias ...='cd ../../../'
 
+alias k='git add . && git commit -am'
+
 
 aclit(){
     setfacl -R -m u:www-data:rwX  $1 && setfacl -dR -m u:www-data:rwX $1
