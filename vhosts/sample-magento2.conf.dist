@@ -1,3 +1,10 @@
+server {
+     listen 80;
+     listen [::]:80;
 
-# PAS ENCORE FAIT :(
-# TODO A FAIRE DU COUP LOL
+     server_name HOSTNAME;
+
+     set $MAGE_ROOT PATH;
+
+     include /path/nginx.conf.sample;
+}

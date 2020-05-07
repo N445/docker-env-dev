@@ -1,6 +1,9 @@
 server {
-    set $DNS HOST;
-    set $PUBLIC_DIR PATH;
+    listen 80;
+    listen [::]:80;
+
+    server_name HOSTNAME;
+    root PATH;
 
 	include /etc/nginx/conf.d/conf/base-symfony.conf;
 }
