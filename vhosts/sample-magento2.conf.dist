@@ -4,7 +4,7 @@ server {
 
      server_name HOSTNAME;
 
-     set $MAGE_ROOT PATH;
+     set $MAGE_ROOT /data/www/PATH;
 
      include /path/nginx.conf.sample;
 }
