@@ -18,6 +18,8 @@ Copier `composer_auth.json.dist` en `composer_auth.json`
 
 Copier `crontab.dist` en `crontab`
 
+Copier `docker-php-ext-xdebug.ini.dist` en `docker-php-ext-xdebug.ini` and edit for you
+
 ### SSH
 
 Copier les fichiers SSH de la machine reconnue par Gitlab dans `php/.ssh`
@@ -63,6 +65,13 @@ A la suite de l'installation les executables de `wkhtmltoimage` et `wkhtmltopdf`
 - apt-get install -y nodejs && npm install npm@latest -g
 - nodejs -v && npm -v
 
+### Xdebug
+
+In PhpStorm
+
+- 1 : File | Settings | Build, Execution, Deployment | Docker and add your docker
+- 2 : File | Settings | Languages & Frameworks | PHP and add your cli interpreter
+- 3 : File | Settings | Languages & Frameworks | PHP | Servers
 ----------------------
 
 # Options

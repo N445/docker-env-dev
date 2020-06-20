@@ -4,15 +4,25 @@ RUN export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" 
     && apt-get update && apt-get install -y --no-install-recommends ghostscript gnupg unzip iputils-ping acl bash-completion \
     libmagickwand-dev ssh git htop zip nodejs grunt nano npm wkhtmltopdf libxslt-dev libgd-dev libxml2-dev imagemagick libzip-dev cron wget \
     && pecl install imagick-3.4.3 \
-    && docker-php-ext-enable imagick
+    && docker-php-ext-enable imagick \
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 
 # Installation de yarn via npm
 RUN npm install yarn sass -g
 
-RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 
 # Extensions php etc
+RUN pecl install xdebug redis \
+    && docker-php-ext-enable xdebug redis
 RUN docker-php-ext-install mysqli pdo pdo_mysql opcache soap bcmath bz2 calendar intl gd xsl xml zip
+
+#RUN echo "xdebug.remote_enable=on" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#    && echo "xdebug.remote_autostart=off" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#    && echo "xdebug.remote_handler=dbgp" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#    && echo "xdebug.remote_connect_back=On" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#    && echo "xdebug.remote_port=9001" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#    && echo "xdebug.idekey=robin-dev" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini \
+#    && echo "xdebug.remote_host=127.0.0.1" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 # SSH
 RUN mkdir /root/.ssh -p
@@ -34,5 +44,7 @@ RUN wget https://get.symfony.com/cli/installer -O - | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 RUN /bin/bash -c "source /root/.bashrc"
+
+RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /data/www
