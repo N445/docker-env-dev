@@ -76,6 +76,8 @@ In PhpStorm
     Server = Docker ; IDE key the value in `docker-php-ext-xdebug.ini` `xdebug.idekey`
 - 5 : run debug + listening
 
+http://urk.local/?XDEBUG_SESSION_START=xdebug
+
 ----------------------
 
 # Options
