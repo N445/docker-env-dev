@@ -9,7 +9,7 @@ services:
     volumes:
       - ${DEV_PATH}:${SERVER_PATH}
       - ./${CACHE_PATH}/composer:/root/.composer/cache
-      - ./php/conf/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+      - ./php/conf/docker-php-ext-xdebug.ini:/usr/local/etc/php/conf.d/99-overrides-docker-php-ext-xdebug.ini
       - ./php/conf/composer_auth.json:/root/.composer/auth.json
       - ./php/conf/.gitconfig:/root/.gitconfig
       - ./php/conf/crontab:/etc/cron.d/crontab
