@@ -72,8 +72,11 @@ In PhpStorm
 - 1 : File | Settings | Build, Execution, Deployment | Docker and add your docker
 - 2 : File | Settings | Languages & Frameworks | PHP and add your cli interpreter
 - 3 : File | Settings | Languages & Frameworks | PHP | Servers
+
+(host = php ; port = 80 ; and match local path with docker path)
+    
 - 4 : On top right of phpstorm add a new configuration `PHP Remote Debug`
-    Server = Docker ; IDE key the value in `docker-php-ext-xdebug.ini` `xdebug.idekey`
+(Server = Docker ; IDE key the value in `docker-php-ext-xdebug.ini` `xdebug.idekey`)
 - 5 : run debug + listening
 
 http://urk.local/?XDEBUG_SESSION_START=xdebug
