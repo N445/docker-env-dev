@@ -14,7 +14,7 @@ RUN npm install yarn sass -g
 # Extensions php etc
 RUN pecl install xdebug \
     && docker-php-ext-enable xdebug
-RUN docker-php-ext-install mysqli pdo pdo_mysql opcache soap bcmath bz2 calendar intl gd xsl xml zip
+RUN docker-php-ext-install mysqli pdo pdo_mysql opcache soap bcmath bz2 calendar intl gd xsl xml zip exif
 
 # SSH
 RUN mkdir /root/.ssh -p
