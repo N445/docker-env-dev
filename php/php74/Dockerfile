@@ -36,3 +36,5 @@ RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 RUN /bin/bash -c "source /root/.bashrc"
 
 WORKDIR /data/www
+
+#RUN pecl install xdebug && docker-php-ext-enable xdebug
