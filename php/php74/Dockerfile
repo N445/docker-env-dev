@@ -2,7 +2,7 @@ FROM php:7.4-fpm
 
 RUN export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" \
     && apt-get update && apt-get install -y --no-install-recommends ghostscript gnupg unzip iputils-ping acl bash-completion \
-    libmagickwand-dev ssh git htop zip nodejs grunt nano npm wkhtmltopdf libxslt-dev libgd-dev libxml2-dev imagemagick libzip-dev cron wget \
+    libmagickwand-dev ssh git htop zip nodejs grunt nano npm wkhtmltopdf libxslt-dev libgd-dev libxml2-dev imagemagick libzip-dev cron wget graphicsmagick \
     && pecl install imagick-3.4.3 \
     && docker-php-ext-enable imagick \
     && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
