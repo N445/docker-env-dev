@@ -39,3 +39,5 @@ RUN /bin/bash -c "source /root/.bashrc"
 RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /data/www
+
+#RUN pecl install xdebug && docker-php-ext-enable xdebug
