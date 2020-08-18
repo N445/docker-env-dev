@@ -4,15 +4,17 @@ RUN export CFLAGS="$PHP_CFLAGS" CPPFLAGS="$PHP_CPPFLAGS" LDFLAGS="$PHP_LDFLAGS" 
     && apt-get update && apt-get install -y --no-install-recommends ghostscript gnupg unzip iputils-ping acl bash-completion \
     libmagickwand-dev ssh git htop zip nodejs grunt nano npm wkhtmltopdf libxslt-dev libgd-dev libxml2-dev imagemagick libzip-dev cron wget \
     && pecl install imagick-3.4.3 \
-    && docker-php-ext-enable imagick
+    && docker-php-ext-enable imagick \
+    && docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 
 # Installation de yarn via npm
 RUN npm install yarn sass -g
 
-RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
 
 # Extensions php etc
-RUN docker-php-ext-install mysqli pdo pdo_mysql opcache soap bcmath bz2 calendar intl gd xsl xml zip
+RUN pecl install xdebug \
+    && docker-php-ext-enable xdebug
+RUN docker-php-ext-install mysqli pdo pdo_mysql opcache soap bcmath bz2 calendar intl gd xsl xml zip exif
 
 # SSH
 RUN mkdir /root/.ssh -p
@@ -29,11 +31,12 @@ COPY ./conf/php-ini-overrides.ini /usr/local/etc/php/conf.d/99-overrides.ini
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Symfony
-#RUN curl -sS https://get.symfony.com/cli/installer | php -- --install-dir=/usr/local/bin --filename=symfony
 RUN wget https://get.symfony.com/cli/installer -O - | bash
 RUN mv /root/.symfony/bin/symfony /usr/local/bin/symfony
 
 RUN /bin/bash -c "source /root/.bashrc"
+
+RUN rm -rf /var/lib/apt/lists/*
 
 WORKDIR /data/www
 

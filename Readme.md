@@ -18,6 +18,8 @@ Copier `composer_auth.json.dist` en `composer_auth.json`
 
 Copier `crontab.dist` en `crontab`
 
+Copier `docker-php-ext-xdebug.ini.dist` en `docker-php-ext-xdebug.ini` and edit for you
+
 ### SSH
 
 Copier les fichiers SSH de la machine reconnue par Gitlab dans `php/.ssh`
@@ -62,6 +64,22 @@ A la suite de l'installation les executables de `wkhtmltoimage` et `wkhtmltopdf`
 - apt-get update && curl -sL https://deb.nodesource.com/setup_12.x | bash -
 - apt-get install -y nodejs && npm install npm@latest -g
 - nodejs -v && npm -v
+
+### Xdebug
+
+In PhpStorm
+
+- 1 : File | Settings | Build, Execution, Deployment | Docker and add your docker
+- 2 : File | Settings | Languages & Frameworks | PHP and add your cli interpreter
+- 3 : File | Settings | Languages & Frameworks | PHP | Servers
+
+(host = php ; port = 80 ; and match local path with docker path)
+    
+- 4 : On top right of phpstorm add a new configuration `PHP Remote Debug`
+(Server = Docker ; IDE key the value in `docker-php-ext-xdebug.ini` `xdebug.idekey`)
+- 5 : run debug + listening
+
+http://urk.local/?XDEBUG_SESSION_START=xdebug
 
 ----------------------
 
