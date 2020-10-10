@@ -69,7 +69,7 @@ A la suite de l'installation les executables de `wkhtmltoimage` et `wkhtmltopdf`
 
 In PhpStorm
 
-- 1 : File | Settings | Build, Execution, Deployment | Docker and add your docker
+- 1 : File | Settings | Build, Execution, Deployment | Docker and add your docker
 - 2 : File | Settings | Languages & Frameworks | PHP and add your cli interpreter
 - 3 : File | Settings | Languages & Frameworks | PHP | Servers
 
@@ -79,7 +79,10 @@ In PhpStorm
 (Server = Docker ; IDE key the value in `docker-php-ext-xdebug.ini` `xdebug.idekey`)
 - 5 : run debug + listening
 
-http://urk.local/?XDEBUG_SESSION_START=xdebug
+http://url.local/?XDEBUG_SESSION_START=xdebug
+
+To disable xdebug comment this line  `zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20190902/xdebug.so` in `php/conf/docker-php-ext-xdebug.ini` and
+
 
 ----------------------
 
